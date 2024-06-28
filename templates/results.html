@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Resultados do Último Concurso</h1>
+        <p><strong>Número do Sorteio:</strong> {{ numero_concurso }}</p>
+        <p><strong>Data do Sorteio:</strong> {{ data_concurso }}</p>
+        {% for resultado in resultados %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <p><strong>Seus Números:</strong> {{ resultado.seus_numeros }}</p>
+                    <p><strong>Números Sorteados:</strong> {{ resultado.numeros_sorteados }}</p>
+                    <p><strong>Seu Mês:</strong> {{ resultado.mes_escolhido }}</p>
+                    <p><strong>Mês da Sorte:</strong> {{ resultado.mes_sorte }}</p>
+                    <p><strong>Acertos:</strong> {{ resultado.acertos }}</p>
+                    <p><strong>Acertou o Mês da Sorte:</strong> {{ 'Sim' if resultado.mes_acerto else 'Não' }}</p>
+                </div>
+            </div>
+        {% endfor %}
+        <a href="{{ url_for('index') }}" class="btn btn-secondary mt-4">Voltar</a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

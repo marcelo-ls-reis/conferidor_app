@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dia de Sorte</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-2">
+        <h1 class="text-center mb-4">Dia de Sorte</h1>
+        <form action="{{ url_for('add') }}" method="post" class="mb-4">
+            <div class="form-group">
+                <label for="numeros">Digite seus números (separados por vírgula):</label>
+                <input type="text" class="form-control" name="numeros" required>
+            </div>
+            <div class="form-group">
+                <label for="mes">Digite o mês da sorte:</label>
+                <input type="text" class="form-control" name="mes" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Adicionar</button>
+        </form>
+        <h2 class="mb-4">Seus Jogos</h2>
+        <ul class="list-group">
+            {% for jogo in jogos %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ jogo[1] }} (Mês: {{ jogo[2] }})
+                    <div>
+                        <a href="{{ url_for('edit', id=jogo[0]) }}" class="btn btn-sm btn-warning">Editar</a>
+                        <a href="{{ url_for('delete', id=jogo[0]) }}" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja deletar este jogo?')">Deletar</a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="{{ url_for('resultados') }}" class="btn btn-success mt-4">Conferir Resultados</a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
